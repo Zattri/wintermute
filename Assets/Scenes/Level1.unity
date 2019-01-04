@@ -924,10 +924,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7e4bc2aa172ef46b87040baa877a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1200
+  movementSpeed: 2000
   mouseSensitivity: 2
   mousePitchRange: 90
-  jumpStrength: 20000
+  jumpStrength: 2000
 --- !u!114 &1922118307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,7 +972,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
-  maxSpeed: 1000
   groundLayers:
     serializedVersion: 2
     m_Bits: 1

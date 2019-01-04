@@ -8,8 +8,6 @@ public class PlayerMotor : MonoBehaviour
     float fallMultiplier = 2.5f;
     [SerializeField]
     float lowJumpMultiplier = 2f;
-    [SerializeField]
-    float maxSpeed = 700;
     
     public LayerMask groundLayers;
 
@@ -38,7 +36,7 @@ public class PlayerMotor : MonoBehaviour
     {
         PerformMovement();
         PerformRotation();
-        PerformVerticalJump();
+        //PerformVerticalJump();
     }
 
     public void SetVelocity(Vector3 velocityInput)
@@ -81,11 +79,11 @@ public class PlayerMotor : MonoBehaviour
     {
         if (velocity.y < 0)
         {
-            velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
         else if (velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
 

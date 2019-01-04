@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private float mousePitchRange = 90f;
 
     [SerializeField]
-    private float jumpStrength = 20000f;
+    private float jumpStrength = 2000f;
 
     private float pitchRot = 0f;
 
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         Vector3 jumpVector = Vector3.zero;
         if (Input.GetButtonDown("Jump") && motor.IsGrounded())
         {
-            jumpVector = Vector3.up * jumpStrength;
+            jumpVector = Vector3.up * jumpStrength * -Physics.gravity.y;
         }
 
         motor.SetJumpForce(jumpVector);
