@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 623260362}
   - component: {fileID: 623260364}
   - component: {fileID: 623260363}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,6 +553,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: ef2cdaae69d34204ab23f0aa8cf46ca5, type: 3}
       propertyPath: m_Name
       value: simple_level
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ef2cdaae69d34204ab23f0aa8cf46ca5, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ef2cdaae69d34204ab23f0aa8cf46ca5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -901,7 +905,7 @@ GameObject:
   - component: {fileID: 1922118310}
   - component: {fileID: 1922118306}
   - component: {fileID: 1922118307}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -920,10 +924,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7e4bc2aa172ef46b87040baa877a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 700
+  movementSpeed: 1200
   mouseSensitivity: 2
   mousePitchRange: 90
-  jumpStrength: 1000
+  jumpStrength: 20000
 --- !u!114 &1922118307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,7 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2153464340229815466, guid: 17e4b26fe9057c74895c62ea57385e73,
     type: 3}
-  cam: {fileID: 0}
+  cam: {fileID: 623260364}
 --- !u!4 &1922118308
 Transform:
   m_ObjectHideFlags: 0
@@ -968,6 +972,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  maxSpeed: 1000
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!54 &1922118311
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -976,9 +984,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922118305}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.5
-  m_AngularDrag: 0.2
+  m_Mass: 0.5
+  m_Drag: 4
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1101,6 +1109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 4560297835213201269, guid: b68f8ffce7dd8b247b42aacb6bd4b8fb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4560297835213201270, guid: b68f8ffce7dd8b247b42aacb6bd4b8fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1155,6 +1168,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560297834629734450, guid: b68f8ffce7dd8b247b42aacb6bd4b8fb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560297836330889722, guid: b68f8ffce7dd8b247b42aacb6bd4b8fb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4560297836385218441, guid: b68f8ffce7dd8b247b42aacb6bd4b8fb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b68f8ffce7dd8b247b42aacb6bd4b8fb, type: 3}

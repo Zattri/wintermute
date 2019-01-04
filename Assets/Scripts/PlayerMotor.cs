@@ -8,8 +8,12 @@ public class PlayerMotor : MonoBehaviour
     float fallMultiplier = 2.5f;
     [SerializeField]
     float lowJumpMultiplier = 2f;
-    private Vector3 velocity = Vector3.zero;
+    [SerializeField]
+    float maxSpeed = 700;
+    
+    public LayerMask groundLayers;
 
+    private Vector3 velocity = Vector3.zero;
     private Vector3 jumpForce = Vector3.zero;
 
     // Camera
@@ -18,6 +22,7 @@ public class PlayerMotor : MonoBehaviour
     
     private Camera cam;
     private Rigidbody rb;
+    private CapsuleCollider col;
 
     void Start()
     {
@@ -25,6 +30,7 @@ public class PlayerMotor : MonoBehaviour
         Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
         cam = GetComponentInChildren<Camera>();
+        col = GetComponent<CapsuleCollider>();
     }
 
     // Runs every physics itteration
@@ -32,6 +38,7 @@ public class PlayerMotor : MonoBehaviour
     {
         PerformMovement();
         PerformRotation();
+        PerformVerticalJump();
     }
 
     public void SetVelocity(Vector3 velocityInput)
@@ -41,16 +48,10 @@ public class PlayerMotor : MonoBehaviour
 
     private void PerformMovement()
     {
-        Debug.Log(velocity);
         if (velocity != Vector3.zero)
         {
             rb.AddForce(velocity * Time.fixedDeltaTime);
         }
-        //if (jumpForce != Vector3.zero)
-        //{
-        //    Debug.Log("Jump force");
-        //    rb.AddForce(jumpForce * Time.fixedDeltaTime, ForceMode.Acceleration);
-        //}
     }
 
     public void SetPlayerRotation(Vector3 rotationInput)
@@ -78,15 +79,22 @@ public class PlayerMotor : MonoBehaviour
 
     public void PerformVerticalJump()
     {
-        //if (velocity.y < 0)
-        //{
-        //    Debug.Log("Top");
-        //    velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        //}
-        //else if (velocity.y > 0 && !Input.GetButton("Jump"))
-        //{
-        //    Debug.Log("Bottom");
-        //    velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-        //}
+        if (velocity.y < 0)
+        {
+            velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    public bool IsGrounded()
+    {
+        return Physics.CheckCapsule(
+            col.bounds.center, 
+            new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z), 
+            col.radius * .9f,
+            groundLayers);
     }
 }
